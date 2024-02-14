@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player1
-  - Player2
-  - Ball
+  - Goal
+  - PowerUp
+  - Speed
+  - SlowDown
+  - Size
   layers:
   - Default
   - TransparentFX
