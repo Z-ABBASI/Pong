@@ -4,11 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Goal
-  - PowerUp
-  - Speed
-  - SlowDown
   - Size
+  - Speed
+  - Goal
   layers:
   - Default
   - TransparentFX
