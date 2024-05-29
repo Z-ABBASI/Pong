@@ -5,10 +5,17 @@ public class Paddle : MonoBehaviour
 {
     public float maxTravelHeight;
     public float minTravelHeight;
+    public float originalSpeed;
     public float speed;
     public float collisionBallSpeedUp = 1.5f;
     public string inputAxis;
     public AudioSource TheSoundOfCollision;
+    public CameraShake cameraShake;
+
+    private void Start()
+    {
+        speed = originalSpeed;
+    }
 
     //-----------------------------------------------------------------------------
     void Update()
@@ -46,6 +53,8 @@ public class Paddle : MonoBehaviour
         TheSoundOfCollision.pitch += 0.1f;
         
         TheSoundOfCollision.Play();
+
+        StartCoroutine(cameraShake.PerlinShake());
 
         // Debug.DrawRay(other.transform.position, newVelocity, Color.yellow);
         // Debug.Break();

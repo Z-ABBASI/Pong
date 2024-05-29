@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GoalTrigger rightGoalTrigger;
     public Paddle leftPaddle;
     public Paddle rightPaddle;
+
+    public GameObject[] PowerUps;
 
     int leftPlayerScore = 0;
     int rightPlayerScore = 0;
@@ -26,6 +29,17 @@ public class GameManager : MonoBehaviour
         ScoreBoard.SetText($"{leftPlayerScore}\t{rightPlayerScore}");
         Debug.Log($"{leftPlayerScore}\t{rightPlayerScore}");
         ScoreBoard.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
+        StartCoroutine(SpawnPowerUp());
+    }
+
+    //---------------------------------------------------------------------------
+    IEnumerator SpawnPowerUp()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(5, 15));
+            Instantiate(PowerUps[Random.Range(0, 2)], new Vector3(Random.Range(-7.0f, 7.0f), 0, Random.Range(-4.5f, 4.5f)), Quaternion.identity);
+        }
     }
 
     //---------------------------------------------------------------------------
@@ -55,6 +69,8 @@ public class GameManager : MonoBehaviour
         }
         ScoreBoard.SetText($"{leftPlayerScore}\t{rightPlayerScore}");
         ScoreBoard.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
+        leftPaddle.speed = leftPaddle.originalSpeed;
+        rightPaddle.speed = rightPaddle.originalSpeed;
     }
 
     //---------------------------------------------------------------------------
